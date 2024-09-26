@@ -42,11 +42,11 @@ const App = () => {
 
   return (
 <>
-<Navbar/>
+<Navbar selector={selector}/>
 <div className='flex justify-center items-center flex-wrap gap-5 m-5'>
 
 {products? products.map((item)=>{
-  return <div className="card bg-base-100 w-72 shadow-xl">
+  return <div key={item.id} className="card bg-base-100 w-72 shadow-xl">
   <figure>
     <img
       src={item.thumbnail}
@@ -55,13 +55,14 @@ const App = () => {
   <div className="card-body">
     <h2 className="card-title">
       {item.title.slice(0,12)+"..."}
-      <div className="badge badge-secondary">NEW</div>
+      <div className="badge badge-secondary"><p>{item.rating}</p></div>
     </h2>
-    <p>{item.description.slice(0,80)+"..."}</p>
+    <p>{item.description.slice(0,50)+"..."}</p>
     <div className="card-actions justify-end">
-      <div className="badge badge-outline">{item.category}</div>
-      <div className="badge badge-outline">Products</div>
+      <div className="badge badge-outline"><p>{item.brand}</p></div>
+      <div className="badge badge-outline">{item.availabilityStatus}</div>
     </div>
+      <div className="m-2 text-lg font-bold"><h1>${item.price}</h1></div>
     <div className='text-center  mt-3 btn btn-primary text-lg'>
       <button onClick={()=>addcart(item)}>Add to cart</button>
     </div>
